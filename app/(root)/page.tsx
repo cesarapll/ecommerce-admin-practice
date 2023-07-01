@@ -1,11 +1,26 @@
-import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/nextjs";
-import Image from "next/image";
+"use client";
+
+import { useEffect } from "react";
+
+import { useStoreModal } from "@/hooks/use-store-modal";
 
 const SetupPage = () => {
+  const { onOpen, isOpen } = useStoreModal();
+
+  useEffect(() => {
+    if (!isOpen) {
+      onOpen();
+    }
+  }, [isOpen, onOpen]);
+
   return (
     <div className="p-4">
-      <UserButton afterSignOutUrl="/" />
+      Root page
+      {/* <UserButton afterSignOutUrl="/" />
+
+      <Modal title="Test" description="Test Desc" isOpen onClose={() => {}}>
+        <h2>Children</h2>
+      </Modal> */}
     </div>
   );
 };
